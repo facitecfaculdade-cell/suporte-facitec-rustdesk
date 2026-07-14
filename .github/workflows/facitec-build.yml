@@ -1,0 +1,19 @@
+name: FACITEC Build (Windows + APK)
+
+# Rode manualmente em: aba Actions -> "FACITEC Build (Windows + APK)" -> Run workflow.
+# Servidor e logo ja estao embutidos no codigo; nao precisa de secret nenhum.
+on:
+  workflow_dispatch:
+    inputs:
+      upload-tag:
+        description: "Nome/tag para os artefatos"
+        required: false
+        default: "facitec"
+
+jobs:
+  build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: ${{ github.event.inputs.upload-tag || 'facitec' }}
