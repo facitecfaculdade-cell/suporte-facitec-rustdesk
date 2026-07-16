@@ -10,6 +10,12 @@ on:
         required: false
         default: "facitec"
 
+# Repassa permissao de escrita para o workflow reutilizado poder publicar o
+# GitHub Release (softprops/action-gh-release); sem isso o token fica limitado
+# ao padrao do repositorio (leitura), mesmo que flutter-build.yml peca escrita.
+permissions:
+  contents: write
+
 jobs:
   build:
     uses: ./.github/workflows/flutter-build.yml

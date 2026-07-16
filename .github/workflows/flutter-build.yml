@@ -10,6 +10,12 @@ on:
         type: string
         default: "nightly"
 
+# Needed so softprops/action-gh-release can create/update the GitHub Release;
+# without this the GITHUB_TOKEN falls back to the repo's default permission
+# (often read-only), and every "Publish Release" step 403s.
+permissions:
+  contents: write
+
 # NOTE: F-Droid builder script 'flutter/build_fdroid.sh' reads environment
 # variables from this workflow!
 #
